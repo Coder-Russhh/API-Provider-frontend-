@@ -1,7 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import {ApiDocs, ContactUs, KnowMore, HomePage, Navbar, Footer, ApiSelection, ApiDetails} from "./components/AllFiles";
-import FoodItem from "./components/FoodItem";
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+import ApiSelection from "./components/ApiSelection";
+import ApiDetails from "./components/ApiDetails";
+import ApiDocs from "./components/ApiDocs";
+import ContactUs from "./components/ContactUs";
+import KnowMore from "./components/KnowMore";
+import Footer from "./components/Footer";
+// import FoodItem from "./components/FoodItem";
+
 
 const App = () => {
   return (
