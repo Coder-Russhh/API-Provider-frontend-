@@ -8,7 +8,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link to="/" className="hover:text-gray-400">
-            Free.Large.API
+            API.Provider
           </Link>
         </div>
 

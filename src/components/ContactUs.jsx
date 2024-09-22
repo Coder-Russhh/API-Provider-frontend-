@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 
 const ContactUs = () => {
@@ -8,6 +8,11 @@ const ContactUs = () => {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    // Scroll to the top of the page when the component is rendered
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

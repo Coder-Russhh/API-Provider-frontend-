@@ -5,6 +5,7 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa"; // Importing icons
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,7 +14,7 @@ const Footer = () => {
         {/* Left Side: Logo & Description */}
         <div>
           {/* Logo */}
-          <h1 className="text-2xl font-bold mb-4">Free.Large.API</h1>
+          <h1 className="text-2xl font-bold mb-4">API.Provider</h1>
 
           {/* Short Description */}
           <p className="text-gray-400">
@@ -28,7 +29,12 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex space-x-4 mb-6">
-            <FaLinkedin className="text-white hover:text-gray-400" size={24} />
+            <Link to="https://www.linkedin.com/in/ramsahu/">
+              <FaLinkedin
+                className="text-white hover:text-gray-400"
+                size={24}
+              />
+            </Link>
             <FaFacebookF className="text-white hover:text-gray-400" size={24} />
             <FaTwitter className="text-white hover:text-gray-400" size={24} />
             <FaInstagram className="text-white hover:text-gray-400" size={24} />
@@ -38,10 +44,12 @@ const Footer = () => {
           <p className="text-gray-400">
             Email us for any query:
             <br />
-            <span className="text-[#9bff52] hover:text-[#7ddf33] text-xl underline">
-              {" "}
-              Contact me
-            </span>
+            <Link to="/contact">
+              <span className="text-[#9bff52] hover:text-[#7ddf33] text-xl underline">
+                {" "}
+                Contact me
+              </span>
+            </Link>
           </p>
         </div>
       </div>
