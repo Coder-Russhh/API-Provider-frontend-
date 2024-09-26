@@ -2,18 +2,24 @@ import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 
 const ContactUs = () => {
+  // Step 1: State for form data
   const [formData, setFormData] = useState({
     email: "",
     message: "",
   });
 
+  // Step 2: State for success message
   const [successMessage, setSuccessMessage] = useState("");
 
+  // Step 3: State for handling errors (if needed)
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Step 4: Scroll to the top when the component is mounted
   useEffect(() => {
-    // Scroll to the top of the page when the component is rendered
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Scroll to top of page on load
   }, []);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,12 +27,14 @@ const ContactUs = () => {
       [name]: value,
     });
   };
+
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // check both emails and message ----
+    // Validate form
     if (!formData.email || !formData.message) {
-      alert("Please fill in both fields");
+      setErrorMessage("Please fill in both fields.");
       return;
     }
 
@@ -34,29 +42,34 @@ const ContactUs = () => {
     emailjs
       .send(
         "service_9y5ca0j", // Replace with your service ID
-        "template_0vjl0v1", // Replace with your email template ID
+        "template_0vjl0v1", // Replace with your template ID
         formData,
-        "v37_DDYCXRvoMvGRQ" // Replace with your user ID from EmailJS
+        "v37_DDYCXRvoMvGRQ" // Replace with your user ID
       )
       .then(() => {
+        // Success handling
         setSuccessMessage("Your message has been sent!");
+        setErrorMessage(""); // Clear errors if successful
         setFormData({
           email: "",
           message: "",
         });
       })
       .catch(() => {
-        alert("Failed to send message, please try again.");
+        // Error handling
+        setErrorMessage("Failed to send message, please try again.");
+        setSuccessMessage(""); // Clear success message on error
       });
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white flex items-center justify-center">
+    <div className="bg-gray-900 min-h-[75vh] md:min-h-screen text-white flex items-center justify-center">
       <div className="max-w-lg w-full bg-gray-800 p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold text-center text-white mb-6">
           Contact Us
         </h1>
         <form onSubmit={handleSubmit}>
+          {/* Email Field */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-semibold mb-2">
               Email Address
@@ -71,6 +84,8 @@ const ContactUs = () => {
               required
             />
           </div>
+
+          {/* Message Field */}
           <div className="mb-4">
             <label
               htmlFor="message"
@@ -81,7 +96,6 @@ const ContactUs = () => {
             <textarea
               id="message"
               name="message"
-              placeholder="How can we improve?"
               value={formData.message}
               onChange={handleChange}
               className="w-full p-2 rounded-lg bg-gray-700 text-gray-300 focus:outline-none"
@@ -89,6 +103,8 @@ const ContactUs = () => {
               required
             />
           </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-[#9bff52] text-black p-2 rounded-lg font-semibold hover:bg-[#7ddf33] transition"
@@ -96,8 +112,15 @@ const ContactUs = () => {
             Submit
           </button>
         </form>
+
+        {/* Success Message */}
         {successMessage && (
           <p className="mt-4 text-green-500 font-semibold">{successMessage}</p>
+        )}
+
+        {/* Error Message */}
+        {errorMessage && (
+          <p className="mt-4 text-red-500 font-semibold">{errorMessage}</p>
         )}
       </div>
     </div>
